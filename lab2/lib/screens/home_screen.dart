@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_screen.dart'; // Додайте цей імпорт
 
 class HomeScreen extends StatelessWidget {
   final List<String> items = [
@@ -21,10 +22,20 @@ class HomeScreen extends StatelessWidget {
             title: Text(items[index]),
             leading: Icon(Icons.star),
             onTap: () {
-              
+              // Додайте функціональність для елементів списку, якщо потрібно
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProfileScreen()),
+          );
+        },
+        child: Icon(Icons.settings), // Іконка для налаштувань
+        tooltip: 'Налаштування акаунта',
       ),
     );
   }
