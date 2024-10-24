@@ -1,3 +1,8 @@
-2024/10/11-10:54:31.820 84b0 Reusing MANIFEST C:\Users\Artem\AppData\Local\Temp\flutter_tools.191ba26a\flutter_tools_chrome_device.b7f7cb2d\Default\shared_proto_db/MANIFEST-000001
-2024/10/11-10:54:31.821 84b0 Recovering log #3
-2024/10/11-10:54:31.822 84b0 Reusing old log C:\Users\Artem\AppData\Local\Temp\flutter_tools.191ba26a\flutter_tools_chrome_device.b7f7cb2d\Default\shared_proto_db/000003.log 
+2024/10/24-22:58:54.362 72dc Reusing MANIFEST C:\Users\Artem\AppData\Local\Temp\flutter_tools.ee672a6a\flutter_tools_chrome_device.da87b148\Default\shared_proto_db/MANIFEST-000001
+2024/10/24-22:58:54.363 72dc Recovering log #7
+2024/10/24-22:58:54.365 72dc Reusing old log C:\Users\Artem\AppData\Local\Temp\flutter_tools.ee672a6a\flutter_tools_chrome_device.da87b148\Default\shared_proto_db/000007.log 
+2024/10/24-22:58:54.365 72dc Delete type=0 #3
+2024/10/24-22:58:54.365 72dc Delete type=0 #4
+2024/10/24-22:58:54.392 1684 Level-0 table #11: started
+2024/10/24-22:58:54.395 1684 Level-0 table #11: 134852 bytes OK
+2024/10/24-22:58:54.397 1684 Delete type=0 #7
