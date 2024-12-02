@@ -35,11 +35,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _logout(BuildContext context) async {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
-  }
+  // Відображення діалогового вікна для підтвердження
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Підтвердження'),
+        content: Text('Ви впевнені, що хочете вийти з акаунта?'),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Ні'),
+            onPressed: () {
+              Navigator.of(context).pop(); // Закриваємо діалогове вікно без виходу
+            },
+          ),
+          TextButton(
+            child: Text('Так'),
+            onPressed: () async {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isLoggedIn', false);
+              Navigator.of(context).pop(); // Закриваємо діалогове вікно
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 
   Future<void> _changeName(BuildContext context) async {
     showDialog(
