@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_textfield.dart';
-import 'home_screen.dart'; // Додайте цей імпорт
-import 'registration_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'home_screen.dart';
+import 'registration_screen.dart'; 
+import 'package:connectivity/connectivity.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,22 +15,68 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  Future<void> _login(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    String? savedEmail = prefs.getString('email');
-    String? savedPassword = prefs.getString('password');
+  @override
+  void initState() {
+    super.initState();
+    _checkIfLoggedIn();
+  }
 
-    if (_emailController.text == savedEmail && _passwordController.text == savedPassword) {
-      // Перенаправлення на домашній екран після успішного входу
-      Navigator.pushReplacement(
-        context,
+  Future<void> _checkIfLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+    if (isLoggedIn) {
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Неправильний email або пароль')),
-      );
     }
+  }
+
+  Future<void> _login() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      _showDialog('Немає зв\'язку з Інтернетом', 'Перевірте ваше інтернет-з\'єднання і спробуйте знову.');
+      return;
+    }
+
+    var url = Uri.parse('https://run.mocky.io/v3/9c5b939b-4408-4adf-bf27-f1eac1837d04'); // API URL
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var users = json.decode(response.body)['users'];
+      var user = users.firstWhere((user) => user['email'] == _emailController.text && user['password'] == _passwordController.text, orElse: () => null);
+      if (user != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isLoggedIn', true);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+        _showDialog('Успішний вхід', 'Ви успішно увійшли в систему!');
+      } else {
+        _showDialog('Помилка входу', 'Неправильний email або пароль');
+      }
+    } else {
+      _showDialog('Помилка входу', 'Помилка сервера: ${response.statusCode}');
+    }
+  }
+
+  void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -43,11 +90,18 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextField(labelText: 'Email', controller: _emailController),
-            CustomTextField(labelText: 'Password', controller: _passwordController, obscureText: true),
-            CustomButton(
-              text: 'Login',
-              onPressed: () => _login(context),
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(labelText: 'Password'),
+            ),
+            ElevatedButton(
+              onPressed: _login,
+              child: Text('Login'),
             ),
             TextButton(
               onPressed: () {

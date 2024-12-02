@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
-import 'home_screen.dart'; // Додайте цей імпорт
+import 'home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -39,14 +39,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     await prefs.setString('name', _nameController.text);
     await prefs.setString('email', _emailController.text);
     await prefs.setString('password', _passwordController.text);
+    await prefs.setBool('isLoggedIn', true);
 
-    // Перенаправлення на домашній екран після реєстрації
+ 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),
     );
+     _showDialog('Успішна реєстрація', 'Ви успішно зареєструвалися та увійшли в систему!');
+   }
+void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

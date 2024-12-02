@@ -1,8 +1,24 @@
-2024/10/24-22:58:54.362 72dc Reusing MANIFEST C:\Users\Artem\AppData\Local\Temp\flutter_tools.ee672a6a\flutter_tools_chrome_device.da87b148\Default\shared_proto_db/MANIFEST-000001
-2024/10/24-22:58:54.363 72dc Recovering log #7
-2024/10/24-22:58:54.365 72dc Reusing old log C:\Users\Artem\AppData\Local\Temp\flutter_tools.ee672a6a\flutter_tools_chrome_device.da87b148\Default\shared_proto_db/000007.log 
-2024/10/24-22:58:54.365 72dc Delete type=0 #3
-2024/10/24-22:58:54.365 72dc Delete type=0 #4
-2024/10/24-22:58:54.392 1684 Level-0 table #11: started
-2024/10/24-22:58:54.395 1684 Level-0 table #11: 134852 bytes OK
-2024/10/24-22:58:54.397 1684 Delete type=0 #7
+2024/11/22-09:07:35.794 9900 Reusing MANIFEST C:\Users\Artem\AppData\Local\Temp\flutter_tools.cc0248c\flutter_tools_chrome_device.4c2a2e21\Default\shared_proto_db/MANIFEST-000001
+2024/11/22-09:07:35.795 9900 Recovering log #39
+2024/11/22-09:07:35.796 9900 Reusing old log C:\Users\Artem\AppData\Local\Temp\flutter_tools.cc0248c\flutter_tools_chrome_device.4c2a2e21\Default\shared_proto_db/000039.log 
+2024/11/22-09:07:35.797 9900 Delete type=0 #3
+2024/11/22-09:07:35.797 9900 Delete type=0 #4
+2024/11/22-09:07:35.797 9900 Delete type=0 #7
+2024/11/22-09:07:35.797 9900 Delete type=2 #8
+2024/11/22-09:07:35.797 9900 Delete type=0 #10
+2024/11/22-09:07:35.797 9900 Delete type=2 #11
+2024/11/22-09:07:35.797 9900 Delete type=2 #13
+2024/11/22-09:07:35.797 9900 Delete type=0 #13
+2024/11/22-09:07:35.798 9900 Delete type=2 #14
+2024/11/22-09:07:35.798 9900 Delete type=0 #16
+2024/11/22-09:07:35.798 9900 Delete type=2 #17
+2024/11/22-09:07:35.798 9900 Delete type=0 #19
+2024/11/22-09:07:35.798 9900 Delete type=2 #21
+2024/11/22-09:07:35.798 9900 Delete type=0 #23
+2024/11/22-09:07:35.798 9900 Delete type=2 #24
+2024/11/22-09:07:35.798 9900 Delete type=0 #26
+2024/11/22-09:07:35.798 9900 Delete type=2 #27
+2024/11/22-09:07:35.798 9900 Delete type=0 #29
+2024/11/22-09:07:35.798 9900 Delete type=2 #30
+2024/11/22-09:07:35.798 9900 Delete type=0 #32
+2024/11/22-09:07:35.798 9900 Delete type=0 #36
